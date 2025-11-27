@@ -34,20 +34,27 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(backgroundColor: Colors.white,type:BottomNavigationBarType.fixed,items: [
-        BottomNavigationBarItem(icon: Icon(Icons.message, color: Colors.black,),label: "Chats"),
-        BottomNavigationBarItem(icon: Icon(Icons.update, color: Colors.black,),label: "Updates"),
-        BottomNavigationBarItem(icon: Icon(Icons.groups, color: Colors.black,),label: "Community"),
-        BottomNavigationBarItem(icon: Icon(Icons.call, color: Colors.black,),label: "Calls"),
+      bottomNavigationBar: BottomNavigationBar(backgroundColor: Theme.of(context).scaffoldBackgroundColor,type:BottomNavigationBarType.fixed,items: [
+        BottomNavigationBarItem(icon: Icon(Icons.message,),label: "Chats"),
+        BottomNavigationBarItem(icon: Icon(Icons.update,),label: "Updates"),
+        BottomNavigationBarItem(icon: Icon(Icons.groups,),label: "Community"),
+        BottomNavigationBarItem(icon: Icon(Icons.call,),label: "Calls"),
       ],
         currentIndex: selectedIndex,
         selectedLabelStyle: GoogleFonts.roboto(
           fontWeight: FontWeight.bold,
           color: Colors.black
         ),
+        selectedIconTheme: IconThemeData(
+          color: Colors.green,
+        ),
+
+        unselectedIconTheme: IconThemeData(
+          color: Colors.black,
+        ),
         unselectedLabelStyle: GoogleFonts.roboto(
-            fontWeight: FontWeight.bold,
-          color: Colors.black
+          fontWeight: FontWeight.bold,
+          color: Colors.black,
         ),
         onTap: onTapped,
       ),

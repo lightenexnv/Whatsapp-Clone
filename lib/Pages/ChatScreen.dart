@@ -1,5 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:whatsapp_clone/Pages/MenuPages/BroadcastListsPage.dart';
+import 'package:whatsapp_clone/Pages/CallScreen.dart';
+import 'package:whatsapp_clone/Pages/MenuPages/LinkedDevicesPage.dart';
+import 'package:whatsapp_clone/Pages/MenuPages/NewCommunityPage.dart';
+import 'package:whatsapp_clone/Pages/MenuPages/NewGroupPage.dart';
+import 'package:whatsapp_clone/Pages/MenuPages/PaymentsPage.dart';
+import 'package:whatsapp_clone/Pages/MenuPages/ReadPage.dart';
+import 'package:whatsapp_clone/Pages/MenuPages/SettingPage.dart';
+import 'package:whatsapp_clone/Pages/MenuPages/StarredPage.dart';
 
 class Chatscreen extends StatelessWidget {
   const Chatscreen({super.key});
@@ -101,9 +112,11 @@ class Chatscreen extends StatelessWidget {
       }
     }
 
+    dynamic themecontext = Theme.of(context).scaffoldBackgroundColor;
+
 
     return Scaffold(
-      backgroundColor: Colors.white,
+        backgroundColor: themecontext,
       body: SafeArea(child:
       Padding(
         padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 10),
@@ -116,31 +129,137 @@ class Chatscreen extends StatelessWidget {
                     Expanded(
                       child: Text(
                         "WhatsApp",style: GoogleFonts.roboto(
-                          color: Colors.black,
+                          color: Theme.of(context).textTheme.bodyLarge!.color,
                           fontWeight: FontWeight.bold,
                           fontSize: height*0.03
                       ),
                       ),
                     ),
                     IconButton(onPressed: (){}, icon: Icon(Icons.qr_code_scanner_outlined)),
-                    IconButton(onPressed: (){}, icon: Icon(Icons.camera_alt_outlined)),
-                    IconButton(onPressed: (){}, icon: Icon(Icons.more_vert))
+                    IconButton(onPressed: (){
+                      Get.isDarkMode?Get.changeThemeMode(ThemeMode.light)
+                          : Get.changeThemeMode(ThemeMode.dark);
+                    }, icon: Icon(Icons.camera_alt_outlined)),
+                    PopupMenuButton(
+                        icon: Icon(Icons.more_vert),
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(50),
+                        itemBuilder: (context) => [
+                          PopupMenuItem(
+                            child: InkWell(
+                              onTap: () {
+                                Get.to(NewGroupPage());
+                              },
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(vertical: 10),
+                                child: Text("New group", style: TextStyle(color: Colors.white)),
+                              ),
+                            ),
+                          ),
+
+                          PopupMenuItem(
+                            child: InkWell(
+                              onTap: () {
+                                Get.to(NewCommunityPage());
+                              },
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(vertical: 10),
+                                child: Text("New community", style: TextStyle(color: Colors.white)),
+                              ),
+                            ),
+                          ),
+
+                          PopupMenuItem(
+                            child: InkWell(
+                              onTap: () {
+                                Get.to(BroadcastListsPage());
+                              },
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(vertical: 10),
+                                child: Text("Broadcast lists", style: TextStyle(color: Colors.white)),
+                              ),
+                            ),
+                          ),
+
+                          PopupMenuItem(
+                            child: InkWell(
+                              onTap: () {
+                                Get.to(LinkedDevicesPage());
+                              },
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(vertical: 10),
+                                child: Text("Linked devices", style: TextStyle(color: Colors.white)),
+                              ),
+                            ),
+                          ),
+
+                          PopupMenuItem(
+                            child: InkWell(
+                              onTap: () {
+                                Get.to(StarredPage());
+                              },
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(vertical: 10),
+                                child: Text("Starred", style: TextStyle(color: Colors.white)),
+                              ),
+                            ),
+                          ),
+
+                          PopupMenuItem(
+                            child: InkWell(
+                              onTap: () {
+                                Get.to(PaymentsPage());
+                              },
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(vertical: 10),
+                                child: Text("Payments", style: TextStyle(color: Colors.white)),
+                              ),
+                            ),
+                          ),
+
+                          PopupMenuItem(
+                            child: InkWell(
+                              onTap: () {
+                                Get.to(ReadPage());
+                              },
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(vertical: 10),
+                                child: Text("Read", style: TextStyle(color: Colors.white)),
+                              ),
+                            ),
+                          ),
+
+                          PopupMenuItem(
+                            child: InkWell(
+                              onTap: () {
+                                Get.to(SettingPage());
+                              },
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(vertical: 10),
+                                child: Text("Settings", style: TextStyle(color: Colors.white)),
+                              ),
+                            ),
+                          ),
+                        ])
                   ],
                 ),SizedBox(height: 8,),
                 Container(
                   decoration: BoxDecoration(
-                      color: Colors.grey.shade200,
-                      borderRadius: BorderRadius.circular(20)
+                    color: Colors.grey.shade200,
+                    borderRadius: BorderRadius.circular(20),
                   ),
                   child: TextField(
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
-                        border: InputBorder.none,
-                        prefixIcon: Icon(Icons.search),
-                        hintText: "Ask Meta Ai or Search",
-                        hintStyle: GoogleFonts.roboto(
-                        ),
-                        contentPadding: EdgeInsets.symmetric(horizontal: width * 0.02, vertical: 11)
+                      border: InputBorder.none,
+                      prefixIcon: Icon(Icons.search,
+                          color: Theme.of(context).iconTheme.color),
+                      hintText: "Ask Meta Ai or Search",
+                      hintStyle: GoogleFonts.roboto(
+                        color: Theme.of(context).hintColor,
+                      ),
+                      contentPadding: EdgeInsets.symmetric(
+                          horizontal: width * 0.02, vertical: 11),
                     ),
                   ),
                 ),
@@ -156,7 +275,7 @@ class Chatscreen extends StatelessWidget {
                         return Row(
                           children: [
                             CircleAvatar(
-                              radius: 28,
+                              radius: 32,
                               backgroundImage: AssetImage(item["profileImage"]),
                             ),
                             SizedBox(width: 20),
@@ -182,7 +301,7 @@ class Chatscreen extends StatelessWidget {
                           ],
                         );
                       },
-                      separatorBuilder: (context, index) => SizedBox(height: 15),
+                      separatorBuilder: (context, index) => SizedBox(height: 18),
                     ),
                   ),
                 ),

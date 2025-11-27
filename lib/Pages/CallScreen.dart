@@ -87,7 +87,7 @@ class CallScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body:SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
           child: Stack(
             children: [Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -207,7 +207,7 @@ class CallScreen extends StatelessWidget {
                       return Row(
                         children: [
                           CircleAvatar(
-                            radius: 27,
+                            radius: 32,
                             backgroundColor: Colors.grey[700],
                             backgroundImage: AssetImage(item["profileImage"]),
 
